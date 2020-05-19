@@ -8,8 +8,6 @@ PG_DUMPFILE=sentry-202005141000.dump
 docker-compose up -d postgres
 docker-compose logs -f     # wait until postgres is ready, then Ctrl+C and continue:
 
-echo n | docker-compose run --rm web upgrade     # n = don't create a user right now
-
 docker-compose exec postgres psql -U postgres \
     -c "create user ferdinand superuser; create user rdsadmin superuser;"
 
