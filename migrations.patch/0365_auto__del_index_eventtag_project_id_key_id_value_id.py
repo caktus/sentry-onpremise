@@ -20,7 +20,7 @@ class Migration(SchemaMigration):
             db.commit_transaction()
             try:
                 db.execute(
-                    "DROP INDEX CONCURRENTLY {}".format(
+                    "DROP INDEX CONCURRENTLY IF EXISTS {}".format(
                         db.create_index_name(
                             u'sentry_eventtag', [
                                 'project_id', 'key_id', 'value_id']),
@@ -28,7 +28,7 @@ class Migration(SchemaMigration):
                 )
             except ProgrammingError:
                 db.execute(
-                    "DROP INDEX {}".format(
+                    "DROP INDEX IF EXISTS {}".format(
                         db.create_index_name(
                             u'sentry_eventtag', [
                                 'project_id', 'key_id', 'value_id']),
